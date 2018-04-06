@@ -1,6 +1,9 @@
 www.brewerydb.com
 (and how do I colorize this?!)
 
+April 6, 2018. 1 minute-  quick change to this
+file, forgot to edit something.
+
 April 5, 2018 7:45P - 11:00P
 -- DONE- .env file
 -- DONE- forked!  Do I need to do upstream to sync with DPS?
