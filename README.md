@@ -15,7 +15,8 @@ We welcome you and thank you for taking the time to do this coding assessment. P
 * Put the time that you start and end on the first line of notes.md. Also, add any grading advice, disclaimers, brags, feedback, or anomalies you encounter along your way.
 * Please try to commit often and add messages to your commits so we can more easily review your work.
 * We added more steps than we expect you to finish. Don't be overwhelmed and get as far as you can in the time you have. We will take into account the time amount of time you took, the amount of experience you have in ReactJS, etc.
-* **The Webpack server and API server for the project can be run via `bundle exec foreman start`**.
+* **The Webpack server and API server for the project can be run via `bundle exec foreman start`**.  This is failing for me...
+
 * IMPORTANT: You will need to create a .env file in the root directory of the project. The easiest way to do this is to run this command in your terminal: `cp .env.example .env`
 * IMPORTANT: You will need to obtain an API key for the BreweryDB API from us at DevPoint Labs. Please reach out to us and let us know when you are ready to start the project.
 * HINT: Postman is an awesome tool to start making API Requests with to see what data comes back and how you'll want to manage that data in your React Components.
@@ -52,9 +53,9 @@ We welcome you and thank you for taking the time to do this coding assessment. P
 
 ### PART I - Basic Data Retrieval
 
- 1. Fork this repo so you have a clone of the project in your own github
- 2. Create a new Beers Component - `client/src/components`
- 2. Add a new client side route - `/beers` that renders our new Beers Component. Our routes are defined in `client/src/components/App.js`.
+ X 1. Fork this repo so you have a clone of the project in your own github
+ X 2. Create a new Beers Component - `client/src/components`
+ X 2. Add a new client side route - `/beers` that renders our new Beers Component. Our routes are defined in `client/src/components/App.js`.
  3. Use `axios`, `fetch` or any other HTTP Request library to GET the first 50 Beers from `/api/all_beers`. The way you choose to display / style this is up to you.
  4. Use `axios`, `fetch` or any other HTTP Request library to GET the first 50 Breweries from `/api/all_breweries`. The way you choose to display / style this is up to you. You can create a new route and have it on a different page or you could use your Beers Component and a Grid system to show all beers and breweries side by side.
  5. Make sure to use enough attributes to make the site interesting. Most Beers and Breweries have an image or multiple images.
