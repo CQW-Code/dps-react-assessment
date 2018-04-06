@@ -1,4 +1,3 @@
-BREWERYDB_API_KEY='4a67a4e833fd9ccbd77588fbaa724c33'
 www.brewerydb.com
 (and how do I colorize this?!)
 
