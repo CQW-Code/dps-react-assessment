@@ -16,23 +16,24 @@ class Beers extends React.Component{
     super(props)
   
     this.state = { beers: []}
+  }
   
 
 componentDidMount() {
   
-  axios.get('https:/brewerydb.com/api/all_beers/count=50')
-   .then( res => this.setState({ beers: res.data }) )
-}
+  axios.get('http://api.brewerdb.com/api/beers?key=BREWERYDB_API_KEY') 
+   .then( res => {this.setState({ beer: res.data })} )
+};
 
 
-beers = () =>
-  {
-    const {beers } = this.state;
+beers = () =>{
+    //const {beer } = this.state;
     return this.state.beers.map( b => 
     
         <Card 
         key={ b.id }
-        color= 'purple'
+        Inverted
+        color= 'teal'
       >
         <Card.Content>
           <Card.Header>
@@ -64,36 +65,42 @@ render() {
 
     return(
       <div>
-      <p color='white'>Test test test</p>
       
-      <Segment>
+      <Segment style={styles.segment}>
         <Header 
           as='h3' 
           size='huge'
           textAlign='center'
-          inverted color ='purple'>
+           >
           BreweryDB Hall of Beers
-          </Header>
+         </Header>
           </Segment>
           
             <Card.Group itemsPerRow={ 3 }>
                { this.beers() }
             </Card.Group>
-
-    <p color='white'>Test test test</p>
-
+          
+      
             </div>
+
+
           )//end return
         }//end render
 
 
 } //end class
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,props) => {
   return {
     beers: state.beers,
     beer: state.beer
   }
 }
 
+const styles = {
+  segment: {
+    backgroundColor: '#f4ad42',
+    Color: '#000'
+  }
+}
 export default connect(mapStateToProps)(Beers);

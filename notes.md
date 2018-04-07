@@ -1,6 +1,11 @@
 www.brewerydb.com
 
-
+**Apri 7, 2018 11:38 AM-1:15PM**
+  - Having big issues with trying to connect to brewerydb.com/api/beers; it won't let me! I can view it in Postman (funny.. I had the same problem with the DPL products one weeks ago)
+**April 6, 2018 2:20 AM-3:53 AM**
+  - Display finally works- Route path component had an S on the end of 'component' (flashbacks of the tiny byte that threw my Orders Form print out way off).
+  - Still can't get the beers to display- don't think I'm getting them correctly in  the axios GET call.
+  ---ZZzzzzz
 
 
 **April 6, 2018 8:45P-12:15AM** 
