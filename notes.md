@@ -1,21 +1,29 @@
 www.brewerydb.com
-(and how do I colorize this?!)
 
-April 6, 2018. 1 minute-  quick change to this
-file, forgot to edit something.
 
-April 5, 2018 7:45P - 11:00P
--- DONE- .env file
--- DONE- forked!  Do I need to do upstream to sync with DPS?
--- DONE Beers component added but bare
 
--- Having issues with Postman and trying to view brewerydb... Not getting anything back at all.
+
+**April 6, 2018 8:45P-12:15AM** 
+  - bit of a late start. 
+  - Postman behaving now.
+  -break time; I think I have the API call right but nothing is rendering or displaying. One big ole black screen as I added a nav button to hop to the /beers page.  Wondering if I should try separate first...
+
+  **April 6, 2018. 1 minute-**  quick change to this file, forgot to edit something.
+
+**April 5, 2018 7:45P - 11:00P**
+-- **DONE**- .env file
+-- **DONE**- forked!  Do I need to do upstream to sync with DPS?
+--**DONE** Beers component added but bare
+
+-- Having issues with Postman and trying to view brewerydb... Not getting anything back at all. 
+**Resolved- finally figured it out!**
 -- also cannot get foreman start to work- getting error 'sh : react-scripts: command not found'  exit code 127
     googling as to why.
 
 NEED TO DO
 -- Axios, fetch--> GET first 50 beers
    /api/all_beers
+    **Can do this in postman, does that count?**
    Ditto for first 50 breweries 
    /api/all_breweries
 

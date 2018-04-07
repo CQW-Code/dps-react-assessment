@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/ducky/.yarn/bin/yarn.js list webpack
+  /usr/local/bin/node /Users/ducky/.yarn/bin/yarn.js init
 
 PATH: 
   /Users/ducky/arc/arcanist/bin:/Users/ducky/.yarn/bin:/Users/ducky/.config/yarn/global/node_modules/.bin:/Users/ducky/.rbenv/shims:/Users/ducky/.rbenv/bin:/Applications/Postgres.app/Contents/Versions/10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -34,7 +34,14 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: No lockfile in this directory. Run `yarn install` to generate one.
-      at new MessageError (/Users/ducky/.yarn/lib/cli.js:186:110)
-      at /Users/ducky/.yarn/lib/cli.js:89389:13
-      at <anonymous>
+  Error: canceled
+      at Interface.<anonymous> (/Users/ducky/.yarn/lib/cli.js:128791:13)
+      at Interface.emit (events.js:160:13)
+      at Interface._ttyWrite (readline.js:785:16)
+      at ReadStream.onkeypress (readline.js:165:10)
+      at ReadStream.emit (events.js:160:13)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1021:36)
+      at ReadStream.emit (events.js:160:13)
+      at addChunk (_stream_readable.js:269:12)
