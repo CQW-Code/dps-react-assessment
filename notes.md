@@ -1,4 +1,7 @@
 www.brewerydb.com
+**April 7, 2018 Approx 2:15-6:30P**
+  still having a lot of issues with API, axios and GET- It shows as 200 ok in the Network console but getting error "No 'Access-Control-Origin' header is present on the requested resource...." so no access... also a 404. I'm sure I'm overthinking it; and likely wrong request info in the componentDidMount function.
+     To that end I put a test card in the Beers component so I know that works! 
 
 **Apri 7, 2018 11:38 AM-1:15PM**
   - Having big issues with trying to connect to brewerydb.com/api/beers; it won't let me! I can view it in Postman (funny.. I had the same problem with the DPL products one weeks ago)
