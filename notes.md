@@ -1,4 +1,7 @@
 www.brewerydb.com
+**8:15PM-10:35P**
+ -progress..a little.  I can see that the connection is being made successfully (200 OK) to the endpoint for both beers and breweries on my terminal though I'm not sure what Connection: "Close" means.. feels like it isn't open for some reason.
+   -pages viewable-- with Zero errors! Alas nowhere near pagination yet.
 **April 7, 2018 Approx 2:15-6:30P**
   still having a lot of issues with API, axios and GET- It shows as 200 ok in the Network console but getting error "No 'Access-Control-Origin' header is present on the requested resource...." so no access... also a 404. I'm sure I'm overthinking it; and likely wrong request info in the componentDidMount function.
      To that end I put a test card in the Beers component so I know that works! 

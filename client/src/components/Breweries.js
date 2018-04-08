@@ -7,103 +7,128 @@ import{
   Card,
   Divider,
   Header,
+  Image,
   Segment,
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 class Breweries extends React.Component {
 
+  getInitialState = () =>{
+    return {data: {brewery:[]}}
+  }
+  state = {brewery: []}
   
-    state = 
-    {      
-      breweries: []
-    }
-  
+
 
   componentDidMount() {
     const { dispatch } = this.props;
-    axios.get('/api/breweries')
+    axios.get('/api/all_breweries')
       .then( res => {
-        this.setState({ breweries: res.data })
+        this.setState({ brewery: res.data })
         dispatch(setHeaders(res.headers));
       });
   }
 
 
-
-
-brewery = () =>{
-  //const {beer } = this.state;
-  return this.state.breweries.map( br => 
   
-      <Card 
-      key={ br.id }
-      Inverted
-      color= 'teal'
-    >
-      <Card.Content>
-        <Card.Header>
-          { br.name }
-        </Card.Header>
-        <Card.Content>
-       {/*  <Image src = {m.image}/> */}
-         ---IMAGE NOT FOUND (yet)---
-          <Divider/>
-        </Card.Content>
-        <Card.Description>
-          Category: {br.category.name}
-          Description: { br.description } <br/>
-          
-        </Card.Description>
-      </Card.Content>
-      <Link to = {`/brewery/${br.id}`}>
-      <Button
-         color = 'blue'>
-         View Brewery in detail  
-        </Button>
-      </Link>
-    </Card>
-  )
-}//end beers function
-
-
-render() {
-
-  return(
-    <div>
-    
-    <Segment style={styles.segment}>
+  brewery = (data) =>{
+      //const {brewery } = this.props;
+      if (this.props.data) {
+      return this.props.brewery.map( b => 
+        
+        <Card 
+          key={ b.id }
+        >
+          <Card.Content>
+            <Card.Header>
+              { b.name }
+            </Card.Header>
+            <Card.Content>
+              <Image src={b.squaremedium}/>
+              <Divider/>
+            </Card.Content>
+            <Card.Description>
+              Category: {b.website } <br/>
+            But we can't see them because 
+            Axios and APIs are baffling!
+            </Card.Description>
+          </Card.Content>
+          <Link to = {`/`}>
+          <Button
+             color = 'blue'>
+             View Brewery details  
+            </Button>
+  
+          <Button>Boo</Button>
+          </Link>
+        </Card>
+      )
+    }
+  }
+  
+    render() {
+      return (
+        <div>
+        <Segment style={styles.segment}>
       <Header 
         as='h3' 
         size='huge'
         textAlign='center'
          >
-        BreweryDB Hall of Breweries
-       </Header>
-        </Segment>
-        
-          <Card.Group itemsPerRow={ 3 }>
-             { this.brewery() }
-          </Card.Group>
-        
-    
-          </div>
-
-
-        )//end return
-      }//end render
-
-}//end class
-
-
+              BreweryDB List of Breweries
+            </Header>
+            </Segment>
+              <Card.Group itemsPerRow={ 4 }>
+               { this.brewery() }
+              </Card.Group>
+              
+                <Card>              
+                <Card.Content>
+                  <Card.Header>
+                    Where are the breweries
+                  </Card.Header>
+                  <Card.Content>
+                    <Divider/>
+                  </Card.Content>
+                  <Card.Description>
+                  But we can't see them because 
+                  Axios and APIs are baffling!
+                  </Card.Description>
+                </Card.Content>
+                <Link to = {`/`}>
+                <Button
+                    fluid
+                    color = 'blue'>
+                    View Brewery details  
+                  </Button>
+                <Button
+                  fluid>
+                  Boo
+                </Button>
+                </Link>
+              </Card>
+              </div>
+            )
+          }
+         
+      
+    }
+  
+  
+  
+  const mapStateToProps = (state,props) => {
+    return {
+      breweries: state.breweries,
+      brewery: state.brewery
+    }
+}
 
 
 const styles = {
 segment: {
-  backgroundColor: '#42bff4',
+  backgroundColor: '#70a2d1',
   Color: '#000'
 }
 }
-export default connect()(Breweries);
-
-//export default Breweries;
+export default connect(mapStateToProps)(Breweries);

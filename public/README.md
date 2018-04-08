@@ -53,9 +53,9 @@ We welcome you and thank you for taking the time to do this coding assessment. P
 
 ### PART I - Basic Data Retrieval
 
- X 1. Fork this repo so you have a clone of the project in your own github
- X 2. Create a new Beers Component - `client/src/components`
- X 2. Add a new client side route - `/beers` that renders our new Beers Component. Our routes are defined in `client/src/components/App.js`.
+  1. Fork this repo so you have a clone of the project in your own github
+  2. Create a new Beers Component - `client/src/components`
+  2. Add a new client side route - `/beers` that renders our new Beers Component. Our routes are defined in `client/src/components/App.js`.
  3. Use `axios`, `fetch` or any other HTTP Request library to GET the first 50 Beers from `/api/all_beers`. The way you choose to display / style this is up to you.
  4. Use `axios`, `fetch` or any other HTTP Request library to GET the first 50 Breweries from `/api/all_breweries`. The way you choose to display / style this is up to you. You can create a new route and have it on a different page or you could use your Beers Component and a Grid system to show all beers and breweries side by side.
  5. Make sure to use enough attributes to make the site interesting. Most Beers and Breweries have an image or multiple images.
