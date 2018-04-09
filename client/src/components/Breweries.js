@@ -7,128 +7,114 @@ import{
   Card,
   Divider,
   Header,
-  Image,
   Segment,
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+//import {getBeers} from '../actions/beers';
 
 class Breweries extends React.Component {
 
-  getInitialState = () =>{
-    return {data: {brewery:[]}}
+  constructor(props) {
+    super(props);
+    this.state = {
+      breweries: []
+    };
   }
-  state = {brewery: []}
-  
-
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    axios.get('/api/all_breweries')
-      .then( res => {
-        this.setState({ brewery: res.data })
-        dispatch(setHeaders(res.headers));
-      });
-  }
+    const {dispatch} = this.props;
+    axios.get(`/api/all_breweries?num=100&page=10&per_page=10`)
+    .then( res => {
+      this.setState({ breweries: res.data })
+      dispatch(setHeaders(res.headers))
+  }).catch(err => {
+    console.log(err)
+  })
+}
 
 
-  
-  brewery = (data) =>{
-      //const {brewery } = this.props;
-      if (this.props.data) {
-      return this.props.brewery.map( b => 
-        
-        <Card 
-          key={ b.id }
-        >
-          <Card.Content>
-            <Card.Header>
-              { b.name }
-            </Card.Header>
-            <Card.Content>
-              <Image src={b.squaremedium}/>
-              <Divider/>
-            </Card.Content>
-            <Card.Description>
-              Category: {b.website } <br/>
-            But we can't see them because 
-            Axios and APIs are baffling!
-            </Card.Description>
-          </Card.Content>
-          <Link to = {`/`}>
-          <Button
-             color = 'blue'>
-             View Brewery details  
-            </Button>
-  
-          <Button>Boo</Button>
-          </Link>
-        </Card>
-      )
-    }
-  }
-  
-    render() {
-      return (
-        <div>
-        <Segment style={styles.segment}>
+render() {
+      const {breweries} = this.state;
+      const brewOpts = Object.entries(breweries).map(key => 
+        <div value={key}>{breweries[key]}</div>
+    )
+  return(
+    <div>
+    <Segment style={styles.segment}>
       <Header 
         as='h3' 
         size='huge'
         textAlign='center'
          >
-              BreweryDB List of Breweries
-            </Header>
-            </Segment>
-              <Card.Group itemsPerRow={ 4 }>
-               { this.brewery() }
-              </Card.Group>
-              
-                <Card>              
+          Where to find the beers!
+       </Header>
+        </Segment>
+          <Card.Group itemsPerRow={ 2 }>
+          {/* {Object.values(this.state.breweries).map((b, index) => { */}
+             {/* console.log(b, index)
+             return( */}
+              <Card 
+                key={brewOpts.id}
+                color= 'yellow'
+                textalign='center'
+                style = {styles.card}
+              >
                 <Card.Content>
-                  <Card.Header>
-                    Where are the breweries
+                  <Card.Header
+                    textAlign='center'
+                    >
+                    Name of Brewery:
+                    { brewOpts.name }
+                    
                   </Card.Header>
-                  <Card.Content>
+                  <Card.Content
+                    textAlign='center'>
+                      ---IMAGE--
                     <Divider/>
                   </Card.Content>
-                  <Card.Description>
-                  But we can't see them because 
-                  Axios and APIs are baffling!
+                  <Card.Description
+                    textAlign='center'
+                     >
+                    Category: {brewOpts.category}<br/>
+                    Description: { brewOpts.description } 
                   </Card.Description>
                 </Card.Content>
-                <Link to = {`/`}>
+                <Link to = {`/brewery/${brewOpts.id}`}>
                 <Button
-                    fluid
-                    color = 'blue'>
-                    View Brewery details  
+                  fluid
+                  color = 'orange'>
+                  View Brewery details  
                   </Button>
-                <Button
-                  fluid>
-                  Boo
-                </Button>
                 </Link>
               </Card>
-              </div>
-            )
-          }
-         
-      
-    }
-  
-  
-  
-  const mapStateToProps = (state,props) => {
-    return {
-      breweries: state.breweries,
-      brewery: state.brewery
-    }
+          )}
+          )}
+            
+           
+          </Card.Group>
+        </div>
+
+        )
+      }
+
+}
+
+
+const mapStateToProps = (state,props) => {
+return {
+  breweries: state.breweries,
+  brewery: state.brewery
+}
 }
 
 
 const styles = {
 segment: {
-  backgroundColor: '#70a2d1',
+  backgroundColor: 'orange',
   Color: '#000'
+},
+card: {
+  backgroundColor: '#efc386'
 }
 }
 export default connect(mapStateToProps)(Breweries);

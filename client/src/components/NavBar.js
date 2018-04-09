@@ -17,6 +17,9 @@ class NavBar extends Component {
           </Link>
           <Link to= '/beers'>
             <Menu.Item name='Beers' active={this.activeItem('/beers')}/>
+            <Link to= '/randombeer'>
+            <Menu.Item name='Feeling lucky' active={this.activeItem('/randombeer')}/>
+          </Link>
           </Link>
           <Link to= '/breweries'>
             <Menu.Item name='Breweries' active={this.activeItem('/beers')}/>
