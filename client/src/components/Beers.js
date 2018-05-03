@@ -11,97 +11,85 @@ import{
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroller';
+import {getBeers} from '../actions/beers';
 
 class Beers extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      beers: [],
-      
-    };
+
+  state = {beers: []}
+
+  
+  componentDidMount = () => {
+    const { dispatch } = this.props;
+    axios.get('/api/all_beers?num=50&page=25&per_page=5')
+      .then( res => {
+        dispatch(setHeaders(res.headers))
+        this.setState({ beers: res.data.entries })
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
-  componentDidMount() {
-    const {dispatch} = this.props;
-    axios.get(`/api/all_beers?num=50&page=25&per_page=2`)
-    .then( res => {
-      this.setState({ beers: res.data })
-      dispatch(setHeaders(res.headers))
-      //dispatch(getBeers(res.beers));
-  }).catch(err => {
-    console.log(err)
-  })
+  allBeers =() => {
+    const {beers} = this.state;
+    
+     return beers.map(b => 
+       <Card 
+         key={b.id }
+         color= 'yellow'
+         textalign='center'
+         style = {styles.card}>
+         <Card.Content>
+           <Card.Header
+             textAlign='center'>
+             { b.name }
+           </Card.Header>
+           <Card.Content
+             textAlign='center'>
+               ---IMAGE--
+             <Divider/>
+           </Card.Content>
+           <Card.Description
+             textAlign='center'>
+             Category: {b.category}<br/>
+             Description: { b.description } 
+           </Card.Description>
+         </Card.Content>
+         <Link to = {`/beer/${b.id}`}>
+         <Button
+           fluid
+           color = 'blue'>
+           View Beer Details
+           </Button>
+         </Link>
+       </Card>
+  );
 }
-
+     
+  
 
 render() {
-      let { beers } = this.state;
-
   return(
     <div>
    <Segment style={styles.segment}>
       <Header 
         as='h3' 
         size='huge'
-        textAlign='center'
-         >
-          Find your Beer!
+        textAlign='center'>
+          Hall of Beers
        </Header>
   </Segment> 
         
-       <Card.Group itemsPerRow={ 2 }>
-          {Object.values(beers).map((value,id) => {
-             console.log(value, id)
-             return(
-              <Card 
-                key={id }
-                color= 'yellow'
-                textalign='center'
-                style = {styles.card}
-              >
-                <Card.Content>
-                  <Card.Header
-                    textAlign='center'
-                    >
-                    Name of Beer:
-                    { id.name }
-                    
-                  </Card.Header>
-                  <Card.Content
-                    textAlign='center'>
-                      ---IMAGE--
-                    <Divider/>
-                  </Card.Content>
-                  <Card.Description
-                    textAlign='center'>
-                    Category: {id.category}<br/>
-                    Description: { id.description } 
-                  </Card.Description>
-                </Card.Content>
-                <Link to = {`/beer/${id.id}`}>
-                <Button
-                  fluid
-                  color = 'blue'>
-                  View Beer Details
-                  </Button>
-                </Link>
-              </Card>
-             )}
-            )} 
+       <Card.Group itemsPerRow={ 3 }>
+            {this.allBeers()}
           </Card.Group>
         </div>
-          )}  
+         )}  
         }
-
-
-
-
-
 const mapStateToProps = (state,props) => {
+  const {beers} = state
 return {
-  beers: props.beers,
-  beer: props.beer
+  beers,
 }
 }
 

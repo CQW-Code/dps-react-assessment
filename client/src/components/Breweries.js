@@ -14,83 +14,70 @@ import {Link} from 'react-router-dom';
 
 class Breweries extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      breweries: []
-    };
-  }
+  state = {breweries: []}
 
   componentDidMount() {
     const {dispatch} = this.props;
     axios.get(`/api/all_breweries?num=100&page=10&per_page=10`)
     .then( res => {
-      this.setState({ breweries: res.data })
+      this.setState({ breweries: res.data.entries })
       dispatch(setHeaders(res.headers))
   }).catch(err => {
     console.log(err)
   })
 }
 
+allBreweries =() => {
+  const {breweries} = this.state;
+  
+   return breweries.map(br => 
+     <Card 
+       key={br.id }
+       color= 'yellow'
+       textalign='center'
+       style = {styles.card}>
+       <Card.Content>
+         <Card.Header
+           textAlign='center'>
+           { br.name }
+         </Card.Header>
+         <Card.Content
+           textAlign='center'>
+             ---IMAGE--
+           <Divider/>
+         </Card.Content>
+         <Card.Description
+           textAlign='center'>
+           Category: {br.category}<br/>
+           Description: { br.description } 
+         </Card.Description>
+       </Card.Content>
+       <Link to = {`/beer/${br.id}`}>
+       <Button
+         fluid
+         color = 'blue'>
+         View Brewery Details
+         </Button>
+       </Link>
+     </Card>
+);
+}
+
 
 render() {
-      const {breweries} = this.state;
-      const brewOpts = Object.entries(breweries).map(key => 
-        <div value={key}>{breweries[key]}</div>
-    )
+     
   return(
     <div>
     <Segment style={styles.segment}>
       <Header 
         as='h3' 
         size='huge'
-        textAlign='center'
-         >
+        textAlign='center'>
           Where to find the beers!
        </Header>
         </Segment>
           <Card.Group itemsPerRow={ 2 }>
-          {/* {Object.values(this.state.breweries).map((b, index) => { */}
-             {/* console.log(b, index)
-             return( */}
-              <Card 
-                key={brewOpts.id}
-                color= 'yellow'
-                textalign='center'
-                style = {styles.card}
-              >
-                <Card.Content>
-                  <Card.Header
-                    textAlign='center'
-                    >
-                    Name of Brewery:
-                    { brewOpts.name }
-                    
-                  </Card.Header>
-                  <Card.Content
-                    textAlign='center'>
-                      ---IMAGE--
-                    <Divider/>
-                  </Card.Content>
-                  <Card.Description
-                    textAlign='center'
-                     >
-                    Category: {brewOpts.category}<br/>
-                    Description: { brewOpts.description } 
-                  </Card.Description>
-                </Card.Content>
-                <Link to = {`/brewery/${brewOpts.id}`}>
-                <Button
-                  fluid
-                  color = 'orange'>
-                  View Brewery details  
-                  </Button>
-                </Link>
-              </Card>
-          )}
-          )}
-            
-           
+              {this.allBreweries()}   
           </Card.Group>
         </div>
 

@@ -5,7 +5,7 @@ import {
 const products = (state = [], action ) => {
   switch(action.type) {
     case BEERS:
-      return action.products
+      return action.beers
     default:
       return state;
   }
